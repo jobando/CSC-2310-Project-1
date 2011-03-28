@@ -2,6 +2,7 @@ package project1;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Random;
 import processing.core.*;
 
 /**
@@ -25,6 +26,9 @@ public class Project1 extends PApplet {
         this.big = biggest;
     }
 
+    /**
+     * Setup function for all the items on the screen. it initialises the bars as well as its dimmentions.
+     */
     @Override
     public void setup() {
         width = arguments[0];
@@ -36,13 +40,16 @@ public class Project1 extends PApplet {
         barAr = new Bar[arguments.length - 2];
         float cnt = 5;
         for (int a = 0; a < barAr.length; a++) {
-            float y = ((this.height) - this.barHeight(arguments[a+2]));
-            float h = this.barHeight(arguments[a+2]);
+            float y = ((this.height) - this.barHeight(arguments[a + 2]));
+            float h = this.barHeight(arguments[a + 2]);
             barAr[a] = new Bar(this, cnt, y, lenght, h);
             cnt += (5 + lenght);
         }
     }
 
+    /**
+     * Draws all of the bars on the screen.
+     */
     @Override
     public void draw() {
         this.background(210);
@@ -51,6 +58,10 @@ public class Project1 extends PApplet {
         }
     }
 
+    /**
+     * Calculates the relative bar length depending on the number of bars and width of window.
+     * @return length.
+     */
     private float lenght() {
         float nubrBars = arguments.length - 2;
         float nubrSpaces = nubrBars + 1;
@@ -58,6 +69,11 @@ public class Project1 extends PApplet {
         return lenght;
     }
 
+    /**
+     * Height of bars relative to the height of screen.
+     * @param a Value of the bar.
+     * @return
+     */
     private float barHeight(int a) {
         float barHeight = (a * (this.height - 5)) / arguments[this.big];
         return barHeight;
