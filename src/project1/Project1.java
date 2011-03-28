@@ -19,10 +19,15 @@ public class Project1 extends PApplet {
 
     @Override
     public void setup() {
+        width = Integer.parseInt(param("width"));
+        height = Integer.parseInt(param("height"));
+        size(height, width);
+        smooth();
     }
 
     @Override
     public void draw() {
+        this.background(255);
     }
 
     /**
