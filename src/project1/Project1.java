@@ -33,26 +33,33 @@ public class Project1 extends PApplet {
         biggest();
         size(width, height);
         smooth();
-        System.out.println(height);
-        this.a = new Bar(this, 5, (height - 100), lenght, 100);
+        barAr = new Bar[arguments.length - 2];
+        float cnt = 5;
+        for (int a = 0; a < barAr.length; a++) {
+            float y = ((this.height) - this.barHeight(arguments[a+2]));
+            float h = this.barHeight(arguments[a+2]);
+            barAr[a] = new Bar(this, cnt, y, lenght, h);
+            cnt += (5 + lenght);
+        }
     }
-    Bar a;
 
     @Override
     public void draw() {
         this.background(210);
-        a.draw();
+        for (int a = 0; a < barAr.length; a++) {
+            barAr[a].draw();
+        }
     }
 
-    private float lenght(){
+    private float lenght() {
         float nubrBars = arguments.length - 2;
         float nubrSpaces = nubrBars + 1;
-        float lenght = (width - (nubrSpaces*5))/nubrBars;
+        float lenght = (width - (nubrSpaces * 5)) / nubrBars;
         return lenght;
     }
 
-    private float barHeight(int a){
-        float barHeight = (a*this.height)/this.big;
+    private float barHeight(int a) {
+        float barHeight = (a * (this.height - 5)) / arguments[this.big];
         return barHeight;
     }
 

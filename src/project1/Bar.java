@@ -13,7 +13,7 @@ public class Bar {
     private PApplet parent;
     private float height, width;
 
-    public Bar(PApplet papp, int x, int y, float w, float h) {
+    public Bar(PApplet papp, float x, float y, float w, float h) {
         locationX = x;
         locationY = y;
         height = h;
