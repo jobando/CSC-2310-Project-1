@@ -10,13 +10,23 @@ import processing.core.*;
  */
 public class Project1 extends PApplet {
 
-    private static String[] arguments; //Arg copy from the main method.
+    private static int[] arguments; //Arg copy from the main method.
     private int width, height; //Dimensions for the window.
+
+    private int biggest() {
+        int biggest = 2;
+        for (int i = 2; i < (arguments.length - 1); i++) {
+            if (arguments[biggest] < arguments[i]) {
+                biggest = i;
+            }
+        }
+        return biggest;
+    }
 
     @Override
     public void setup() {
-        width = Integer.parseInt(arguments[0]);
-        height = Integer.parseInt(arguments[1]);
+        width = arguments[0];
+        height = arguments[1];
         size(height, width);
         smooth();
     }
@@ -30,8 +40,12 @@ public class Project1 extends PApplet {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        arguments = args;
+        int cnt = 0;
+        arguments = new int[args.length];
+        for (String i : args) {
+            arguments[cnt] = Integer.parseInt(i);
+            cnt++;
+        }
         PApplet.main(new String[]{"project1.Project1"});
     }
 }
