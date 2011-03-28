@@ -11,22 +11,25 @@ import processing.core.*;
 public class Project1 extends PApplet {
 
     private static int[] arguments; //Arg copy from the main method.
-    private int width, height; //Dimensions for the window.
+    private int width, height, big; //Dimensions for the window.
 
-    private int biggest() {
+    //Finds the biggest number in the array of integers arguments
+    private void biggest() {
         int biggest = 2;
-        for (int i = 2; i < (arguments.length - 1); i++) {
+        for (int i = 2; i < (arguments.length); i++) {
             if (arguments[biggest] < arguments[i]) {
                 biggest = i;
             }
         }
-        return biggest;
+        this.big = biggest;
+        System.out.println(big);
     }
 
     @Override
     public void setup() {
         width = arguments[0];
         height = arguments[1];
+        biggest();
         size(height, width);
         smooth();
     }
