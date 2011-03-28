@@ -12,19 +12,9 @@ import processing.core.*;
 public class Project1 extends PApplet {
 
     private static int[] arguments; //Arg copy from the main method.
-    private int width, height, big; //Dimensions for the window.
+    private int width, height; //Dimensions for the window.
+    private static int big;
     private Bar[] barAr;
-
-    //Finds the biggest number in the array of integers arguments
-    private void biggest() {
-        int biggest = 2;
-        for (int i = 2; i < (arguments.length); i++) {
-            if (arguments[biggest] < arguments[i]) {
-                biggest = i;
-            }
-        }
-        this.big = biggest;
-    }
 
     /**
      * Setup function for all the items on the screen. it initialises the bars as well as its dimmentions.
@@ -34,7 +24,6 @@ public class Project1 extends PApplet {
         width = arguments[0];
         height = arguments[1];
         float lenght = this.lenght();
-        biggest();
         size(width, height);
         smooth();
         barAr = new Bar[arguments.length - 2];
@@ -85,10 +74,16 @@ public class Project1 extends PApplet {
     public static void main(String[] args) {
         int cnt = 0;
         arguments = new int[args.length];
+        int biggest = 2;
         for (String i : args) {
             arguments[cnt] = Integer.parseInt(i);
+            //Finds the biggest number in the array of integers arguments
+            if (cnt > 1 && (arguments[biggest] < arguments[cnt])) {
+                biggest = cnt;
+            }
             cnt++;
         }
+        big = biggest;
         PApplet.main(new String[]{"project1.Project1"});
     }
 }
