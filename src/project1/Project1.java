@@ -12,6 +12,7 @@ public class Project1 extends PApplet {
 
     private static int[] arguments; //Arg copy from the main method.
     private int width, height, big; //Dimensions for the window.
+    private Bar[] barAr;
 
     //Finds the biggest number in the array of integers arguments
     private void biggest() {
@@ -22,21 +23,37 @@ public class Project1 extends PApplet {
             }
         }
         this.big = biggest;
-        System.out.println(big);
     }
 
     @Override
     public void setup() {
         width = arguments[0];
         height = arguments[1];
+        float lenght = this.lenght();
         biggest();
-        size(height, width);
+        size(width, height);
         smooth();
+        System.out.println(height);
+        this.a = new Bar(this, 5, (height - 100), lenght, 100);
     }
+    Bar a;
 
     @Override
     public void draw() {
-        this.background(255);
+        this.background(210);
+        a.draw();
+    }
+
+    private float lenght(){
+        float nubrBars = arguments.length - 2;
+        float nubrSpaces = nubrBars + 1;
+        float lenght = (width - (nubrSpaces*5))/nubrBars;
+        return lenght;
+    }
+
+    private float barHeight(int a){
+        float barHeight = (a*this.height)/this.big;
+        return barHeight;
     }
 
     /**
