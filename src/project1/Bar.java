@@ -1,6 +1,5 @@
 package project1;
 
-import java.awt.Color;
 import java.util.Random;
 import processing.core.*;
 
@@ -14,8 +13,10 @@ public class Bar {
     private PApplet parent;
     private float height, width;
     int r, b, g;
+    String value;
 
-    public Bar(PApplet papp, float x, float y, float w, float h) {
+    public Bar(PApplet papp, float x, float y, float w, float h, String m) {
+        value = m;
         locationX = x;
         locationY = y;
         height = h;
@@ -31,11 +32,31 @@ public class Bar {
      * This method draws the figures for the car
      */
     public void draw() {
+        parent.smooth();
         parent.pushMatrix();
         parent.translate(locationX, locationY);
         parent.fill(r, b, g);
-        //   parent.rectMode(PApplet.CORNERS);
         parent.rect(0, 0, this.width, this.height);
         parent.popMatrix();
+    }
+
+    public float getX() {
+        return this.locationX;
+    }
+
+    public float getY() {
+        return this.locationY;
+    }
+
+    public float getW() {
+        return this.width;
+    }
+
+    public float getH() {
+        return this.height;
+    }
+
+    public String getValue(){
+        return this.value;
     }
 }

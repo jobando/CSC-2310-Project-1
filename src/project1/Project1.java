@@ -1,8 +1,5 @@
 package project1;
 
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Random;
 import processing.core.*;
 
 /**
@@ -11,28 +8,44 @@ import processing.core.*;
  */
 public class Project1 extends PApplet {
 
-    private static int[] arguments; //Arg copy from the main method.
+    private int[] arguments; //Arg copy from the main method.
     private int width, height; //Dimensions for the window.
-    private static int big;
+    private int big;
     private Bar[] barAr;
+    private Box barBox;
+    final private int spacerH = 20, spacerW = 5;
 
     /**
      * Setup function for all the items on the screen. it initialises the bars as well as its dimmentions.
      */
     @Override
     public void setup() {
+
+        int cnts = 0;
+        arguments = new int[args.length];
+        int biggest = 2;
+        for (int cnt = 0; cnt < args.length; cnt++) {
+            arguments[cnts] = Integer.parseInt(args[cnt]);
+            //Finds the biggest number in the array of integers arguments
+            if (cnts > 1 && (arguments[biggest] < arguments[cnts])) {
+                biggest = cnts;
+            }
+            cnts++;
+        }
+        big = biggest;
         width = arguments[0];
         height = arguments[1];
         float lenght = this.lenght();
         size(width, height);
         smooth();
+        barBox = new Box(this);
         barAr = new Bar[arguments.length - 2];
-        float cnt = 5;
+        float cnt = this.spacerW;
         for (int a = 0; a < barAr.length; a++) {
             float y = ((this.height) - this.barHeight(arguments[a + 2]));
             float h = this.barHeight(arguments[a + 2]);
-            barAr[a] = new Bar(this, cnt, y, lenght, h);
-            cnt += (5 + lenght);
+            barAr[a] = new Bar(this, cnt, y, lenght, h, Integer.toString(arguments[a + 2]));
+            cnt += (this.spacerW + lenght);
         }
     }
 
@@ -44,6 +57,12 @@ public class Project1 extends PApplet {
         this.background(210);
         for (int a = 0; a < barAr.length; a++) {
             barAr[a].draw();
+            String m = ("Value:" + barAr[a].getValue());
+            if (barAr[a].getX() < this.mouseX && this.mouseX < (barAr[a].getW() + barAr[a].getX())) {
+                if (barAr[a].getY() < this.mouseY && this.mouseY < (barAr[a].getH() + barAr[a].getY())) {
+                    barBox.draw(this.mouseX, this.mouseY, m);
+                }
+            }
         }
     }
 
@@ -64,7 +83,7 @@ public class Project1 extends PApplet {
      * @return
      */
     private float barHeight(int a) {
-        float barHeight = (a * (this.height - 5)) / arguments[this.big];
+        float barHeight = (a * (this.height - this.spacerH)) / arguments[this.big];
         return barHeight;
     }
 
@@ -72,18 +91,11 @@ public class Project1 extends PApplet {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int cnt = 0;
-        arguments = new int[args.length];
-        int biggest = 2;
-        for (String i : args) {
-            arguments[cnt] = Integer.parseInt(i);
-            //Finds the biggest number in the array of integers arguments
-            if (cnt > 1 && (arguments[biggest] < arguments[cnt])) {
-                biggest = cnt;
-            }
-            cnt++;
+        String[] newArg = new String[args.length + 1];
+        newArg[0] = "project1.Project1";
+        for (int cnt = 0; cnt < args.length; cnt++){
+            newArg[cnt+1] = args[cnt];
         }
-        big = biggest;
-        PApplet.main(new String[]{"project1.Project1"});
+        PApplet.main(newArg);
     }
 }
