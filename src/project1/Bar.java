@@ -11,9 +11,9 @@ public class Bar {
 
     private float locationX, locationY; //Coordenates on X and Y and
     private PApplet parent;
-    private float height, width;
-    int r, b, g;
-    String value;
+    private float height, width;  //
+    private int r, b, g;
+    private String value;
 
     /**
      * Constructor
@@ -82,7 +82,7 @@ public class Bar {
     }
 
     /**
-     * Returns the vale of the bar
+     * Returns the value of the bar
      * @return String Value
      */
     public String getValue(){

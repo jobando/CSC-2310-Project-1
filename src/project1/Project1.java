@@ -93,9 +93,15 @@ public class Project1 extends PApplet {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        if (args.length <= 1 ){
+            System.out.println("No enough arguments. Minimun of two arguments are required");
+            return;
+        }
         String[] newArg = new String[args.length + 1];
         newArg[0] = "project1.Project1";
-        System.arraycopy(args, 0, newArg, 1, args.length);
+        for (int cnt = 0; cnt < args.length; cnt++){
+            newArg[cnt+1] = args[cnt];
+        }
         PApplet.main(newArg);
     }
 }
