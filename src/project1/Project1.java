@@ -13,10 +13,13 @@ public class Project1 extends PApplet {
     private int big; //Location of the biggest integer on the list
     private Bar[] barAr;
     private Box barBox;
-    final private int spacerH = 20, spacerW = 5;//Dimmetions of the spaces on top and between bars.
+    final private int spacerH = 20, spacerW = 5;//Dimmetions of the spaces on
+                                                //top and between bars.
 
     /**
-     * Setup function for all the items on the screen. Converts all of the items of the args array into integers while it looks for the biggest integer on the list.
+     * Setup function for all the items on the screen. Converts all of the items 
+     * of the args array into integers while it looks for the biggest integer
+     * on the list.
      */
     @Override
     public void setup() {
@@ -45,7 +48,8 @@ public class Project1 extends PApplet {
         for (int a = 0; a < barAr.length; a++) {
             float y = ((this.height) - this.barHeight(arguments[a + 2]));
             float h = this.barHeight(arguments[a + 2]);
-            barAr[a] = new Bar(this, cnt, y, lenght, h, Integer.toString(arguments[a + 2]));
+            barAr[a] = new Bar(this, cnt, y, lenght, h, Integer.toString(
+                    arguments[a + 2]));
             cnt += (this.spacerW + lenght);
         }
     }
@@ -59,7 +63,8 @@ public class Project1 extends PApplet {
         for (int a = 0; a < barAr.length; a++) {
             barAr[a].draw();
             String m = ("Value:" + barAr[a].getValue());
-            //Mouse collision detection. If the mouse is over a bar, it will display the value of the bar on a box
+            //Mouse collision detection. If the mouse is over a bar,
+            //it will display the value of the bar on a box
             if (barAr[a].getX() < this.mouseX && this.mouseX < (barAr[a].getW() + barAr[a].getX())) {
                 if (barAr[a].getY() < this.mouseY && this.mouseY < (barAr[a].getH() + barAr[a].getY())) {
                     barBox.draw(this.mouseX, this.mouseY, m);
@@ -69,7 +74,8 @@ public class Project1 extends PApplet {
     }
 
     /**
-     * Calculates the relative bar length depending on the number of bars and width of window.
+     * Calculates the relative bar length depending on the number of bars and
+     * width of window.
      * @return length.
      */
     private float lenght() {
@@ -85,7 +91,8 @@ public class Project1 extends PApplet {
      * @return
      */
     private float barHeight(int a) {
-        float barHeight = (a * (this.height - this.spacerH)) / arguments[this.big];
+        float barHeight =
+                (a * (this.height - this.spacerH)) / arguments[this.big];
         return barHeight;
     }
 
@@ -94,7 +101,8 @@ public class Project1 extends PApplet {
      */
     public static void main(String[] args) {
         if (args.length <= 1 ){
-            System.out.println("No enough arguments. Minimun of two arguments are required");
+            System.out.println("No enough arguments. Minimun of two "
+                    + "arguments are required");
             return;
         }
         String[] newArg = new String[args.length + 1];

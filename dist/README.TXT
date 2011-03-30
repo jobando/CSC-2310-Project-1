@@ -1,33 +1,23 @@
-========================
-BUILD OUTPUT DESCRIPTION
-========================
+================
+Joel Obando
+03/30/2011
+CSC 2310
+Project 1
+================
 
-When you build an Java application project that has a main class, the IDE
-automatically copies all of the JAR
-files on the projects classpath to your projects dist/lib folder. The IDE
-also adds each of the JAR files to the Class-Path element in the application
-JAR files manifest file (MANIFEST.MF).
+This is the first project for CSC 2310 for the spring semester 2011. This program draws, on a dynamic sized window, a bar chart. The program will only take integers as arguments. A minimum of two arguments are required from the command line when the .jar file is ran. The first two arguments represent the width and height of the window, there after, any other argument will become a bars on chart. There is no limit on how many arguments can be passed. The height of the bars is proportional to the biggest value bar. The width of the bars depend on how many bars and the width of the window. There is a space of 5 pixels between each bar as well as on the right and left borders. The color of the bars are determined at random.
 
-To run the project from the command line, go to the dist folder and
-type the following:
+Usage:
+---------
+	java -jar "Project1.jar" <width> <height> <Value 1> <Value 2> … <Value n>
 
-java -jar "Project1.jar" 
+Usage Example on command prompt:
+----------------------------------
 
-To distribute this project, zip up the dist folder (including the lib folder)
-and distribute the ZIP file.
+	java -jar "Project1.jar" 1000 500 100 90 80 70 60 50 40 30 20 10 150
 
-Notes:
+	java -jar "Project1.jar" 100 100 50 80 20
 
-* If two JAR files on the project classpath have the same name, only the first
-JAR file is copied to the lib folder.
-* Only JAR files are copied to the lib folder.
-If the classpath contains other types of files or folders, none of the
-classpath elements are copied to the lib folder. In such a case,
-you need to copy the classpath elements to the lib folder manually after the build.
-* If a library on the projects classpath also has a Class-Path element
-specified in the manifest,the content of the Class-Path element has to be on
-the projects runtime path.
-* To set a main class in a standard Java project, right-click the project node
-in the Projects window and choose Properties. Then click Run and enter the
-class name in the Main Class field. Alternatively, you can manually type the
-class name in the manifest Main-Class element.
+Features:
+------------
+	* Hover the mouse over the bars do display its value.
