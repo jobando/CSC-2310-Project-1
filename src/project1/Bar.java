@@ -15,6 +15,15 @@ public class Bar {
     int r, b, g;
     String value;
 
+    /**
+     * Constructor
+     * @param papp
+     * @param x X-axis position
+     * @param y Y-axis position
+     * @param w Width
+     * @param h Hight
+     * @param m Value
+     */
     public Bar(PApplet papp, float x, float y, float w, float h, String m) {
         value = m;
         locationX = x;
@@ -29,7 +38,7 @@ public class Bar {
     }
 
     /**
-     * This method draws the figures for the car
+     *Draws the bar with a random color
      */
     public void draw() {
         parent.smooth();
@@ -40,22 +49,42 @@ public class Bar {
         parent.popMatrix();
     }
 
+    /**
+     * Returns the X location
+     * @return Float X Location
+     */
     public float getX() {
         return this.locationX;
     }
 
+    /**
+     * Returns the Y location
+     * @return Float Y Location
+     */
     public float getY() {
         return this.locationY;
     }
 
+    /**
+     * Returns width
+     * @return Float Width
+     */
     public float getW() {
         return this.width;
     }
 
+    /**
+     *Return the hight
+     * @return Float Hight
+     */
     public float getH() {
         return this.height;
     }
 
+    /**
+     * Returns the vale of the bar
+     * @return String Value
+     */
     public String getValue(){
         return this.value;
     }

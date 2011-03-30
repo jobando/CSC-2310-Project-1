@@ -4,23 +4,22 @@ import processing.core.*;
 
 /**
  *
- * @author eltico
+ * @author Joel Obando
  */
 public class Project1 extends PApplet {
 
     private int[] arguments; //Arg copy from the main method.
     private int width, height; //Dimensions for the window.
-    private int big;
+    private int big; //Location of the biggest integer on the list
     private Bar[] barAr;
     private Box barBox;
-    final private int spacerH = 20, spacerW = 5;
+    final private int spacerH = 20, spacerW = 5;//Dimmetions of the spaces on top and between bars.
 
     /**
-     * Setup function for all the items on the screen. it initialises the bars as well as its dimmentions.
+     * Setup function for all the items on the screen. Converts all of the items of the args array into integers while it looks for the biggest integer on the list.
      */
     @Override
     public void setup() {
-
         int cnts = 0;
         arguments = new int[args.length];
         int biggest = 2;
@@ -33,14 +32,16 @@ public class Project1 extends PApplet {
             cnts++;
         }
         big = biggest;
+        //
         width = arguments[0];
         height = arguments[1];
-        float lenght = this.lenght();
+        float lenght = this.lenght();//Calculated bar horizontal lenght
         size(width, height);
         smooth();
         barBox = new Box(this);
         barAr = new Bar[arguments.length - 2];
-        float cnt = this.spacerW;
+        float cnt = this.spacerW; //Space between bars
+        //Initialises the bars
         for (int a = 0; a < barAr.length; a++) {
             float y = ((this.height) - this.barHeight(arguments[a + 2]));
             float h = this.barHeight(arguments[a + 2]);
@@ -58,6 +59,7 @@ public class Project1 extends PApplet {
         for (int a = 0; a < barAr.length; a++) {
             barAr[a].draw();
             String m = ("Value:" + barAr[a].getValue());
+            //Mouse collision detection. If the mouse is over a bar, it will display the value of the bar on a box
             if (barAr[a].getX() < this.mouseX && this.mouseX < (barAr[a].getW() + barAr[a].getX())) {
                 if (barAr[a].getY() < this.mouseY && this.mouseY < (barAr[a].getH() + barAr[a].getY())) {
                     barBox.draw(this.mouseX, this.mouseY, m);
@@ -93,9 +95,7 @@ public class Project1 extends PApplet {
     public static void main(String[] args) {
         String[] newArg = new String[args.length + 1];
         newArg[0] = "project1.Project1";
-        for (int cnt = 0; cnt < args.length; cnt++){
-            newArg[cnt+1] = args[cnt];
-        }
+        System.arraycopy(args, 0, newArg, 1, args.length);
         PApplet.main(newArg);
     }
 }
